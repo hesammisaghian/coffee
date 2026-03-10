@@ -1,0 +1,56 @@
+### PROJECT_TRACKER
+
+### Project status
+- **Current project name**: `coffee`
+- **Current status**: Early setup and structure phase
+
+---
+
+### Completed tasks (based on current state)
+- [x] Initialize Next.js project using pnpm.
+- [x] Set up TypeScript and basic configuration files.
+- [x] Run the project locally to verify it boots.
+- [x] Initialize Git repository and connect to GitHub.
+- [x] Clean up default Next.js public assets that are not needed.
+- [x] Set up base application structure:
+  - `src/app`
+  - `src/components`
+  - `src/data`
+  - `src/lib`
+- [x] Confirm the project runs after initial cleanup and structure setup.
+- [x] Replace the default Next.js homepage with a simple custom homepage skeleton for the coffee website.
+ - [x] Introduce a simple global layout with reusable Header and Footer components wired through `layout.tsx`.
+ - [x] Create minimal placeholder pages for `/coffees` and `/contact` that match the current layout and design direction.
+ - [x] Refactor the homepage into small reusable section components under `src/components/home`.
+ - [x] Refine homepage copy and replace the fake contact button with a real link to the `/contact` page.
+ - [x] Add a simple local coffee data structure and render it as a basic list on the `/coffees` page.
+
+---
+
+### In progress
+- [ ] Define the visual and storytelling direction for the homepage.
+- [ ] Plan the structure of the production-story scroll experience.
+- [ ] Plan the structure for:
+  - Coffee listing section/page.
+  - Coffee product detail view.
+  - Contact / order section or page.
+
+---
+
+### Next step
+- **Next concrete step**: Refine the homepage content and structure, starting with clearer copy and layout for the production process and coffee products sections.
+
+---
+
+### Reminder notes
+- **Work step by step**:
+  - Make small, focused changes.
+  - Finish one clear step before starting the next.
+- **Keep the project stable**:
+  - Ensure `pnpm dev` runs without errors after each change.
+  - Avoid introducing new dependencies unless clearly required.
+- **Scope discipline**:
+  - Do not add CMS, auth, database, payments, dashboards, or multilingual features yet.
+  - Keep edits limited to the files needed for the current step.
+- **Documentation**:
+  - Keep this tracker and `PROJECT_RULES.md` aligned with the real state of the project.
