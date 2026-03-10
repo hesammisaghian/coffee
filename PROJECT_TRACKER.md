@@ -32,6 +32,7 @@
  - [x] Refine the homepage into a Turkish brand and süreç odaklı anlatım, and remove featured coffees from the homepage.
   - [x] Align the coffees data model and coffees pages with real ürün listesi and rewrite them in Turkish.
  - [x] Refine the contact page into a minimal, Türkçe marka iletişim sayfası aligned with the homepage direction.
+ - [x] Align the global header navigation labels and marka metni with the Turkish site direction.
 
 ---
 

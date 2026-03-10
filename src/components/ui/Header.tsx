@@ -1,9 +1,9 @@
 import Link from "next/link";
 
 const navItems = [
-  { href: "/", label: "Home" },
-  { href: "/coffees", label: "Coffees" },
-  { href: "/contact", label: "Contact" },
+  { href: "/", label: "Ana Sayfa" },
+  { href: "/coffees", label: "Kahveler" },
+  { href: "/contact", label: "İletişim" },
 ] as const;
 
 export function Header() {
@@ -11,7 +11,7 @@ export function Header() {
     <header className="border-b border-zinc-200 bg-zinc-50">
       <div className="mx-auto flex max-w-4xl items-center justify-between px-6 py-4">
         <div className="text-sm font-semibold tracking-tight text-zinc-900">
-          Coffee
+          Kahve
         </div>
 
         <nav aria-label="Primary" className="flex items-center gap-4">
