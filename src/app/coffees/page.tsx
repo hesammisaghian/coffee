@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { coffees } from "../../data/coffees";
 
 export default function CoffeesPage() {
@@ -30,29 +31,29 @@ export default function CoffeesPage() {
                 key={coffee.slug}
                 className="rounded-lg border border-zinc-200 bg-white px-4 py-3"
               >
-                <div className="flex flex-col gap-1">
-                  <div className="flex items-baseline justify-between gap-3">
-                    <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
-                      {coffee.name}
-                    </h3>
-                    <p className="text-xs uppercase tracking-wide text-zinc-500">
-                      {coffee.roastLevel} roast
+                <Link href={`/coffees/${coffee.slug}`}>
+                  <div className="flex flex-col gap-1">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+                        {coffee.name}
+                      </h3>
+                      <p className="text-xs uppercase tracking-wide text-zinc-500">
+                        {coffee.roastLevel} roast
+                      </p>
+                    </div>
+                    <p className="text-xs text-zinc-600">
+                      {coffee.shortDescription}
+                    </p>
+                    <p className="text-xs text-zinc-600">
+                      <span className="font-medium text-zinc-700">Origin:</span>{" "}
+                      {coffee.origin}
+                    </p>
+                    <p className="text-xs text-zinc-600">
+                      <span className="font-medium text-zinc-700">Process:</span>{" "}
+                      {coffee.processType}
                     </p>
                   </div>
-                  <p className="text-xs text-zinc-600">
-                    {coffee.shortDescription}
-                  </p>
-                  <p className="text-xs text-zinc-600">
-                    <span className="font-medium text-zinc-700">Origin:</span>{" "}
-                    {coffee.origin}
-                  </p>
-                  {coffee.notes.length > 0 && (
-                    <p className="text-xs text-zinc-600">
-                      <span className="font-medium text-zinc-700">Notes:</span>{" "}
-                      {coffee.notes.join(", ")}
-                    </p>
-                  )}
-                </div>
+                </Link>
               </li>
             ))}
           </ul>

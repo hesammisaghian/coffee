@@ -24,6 +24,10 @@
  - [x] Refactor the homepage into small reusable section components under `src/components/home`.
  - [x] Refine homepage copy and replace the fake contact button with a real link to the `/contact` page.
  - [x] Add a simple local coffee data structure and render it as a basic list on the `/coffees` page.
+ - [x] Add dynamic coffee detail pages backed by the local coffee data and link the `/coffees` list to them.
+ - [x] Extract small coffee data helpers and use them in the coffee detail route with static params and a back link to the list.
+ - [x] Refine the coffee data model and product pages to be CMS-ready while still using local data.
+ - [x] Document a practical content/admin architecture plan in `ADMIN_CONTENT_PLAN.md` to prepare for a future lightweight admin interface.
 
 ---
 
