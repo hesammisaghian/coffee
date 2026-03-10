@@ -2,146 +2,100 @@ export type Coffee = {
   slug: string;
   name: string;
   shortDescription: string;
-  origin: string;
-  roastLevel: "light" | "medium" | "dark";
-  processType: string;
-  fermentationStyle: string;
-  anaerobic: boolean;
-  chemicalAdditiveFree: boolean;
-  artificialAromaFree: boolean;
-  extractsUsed?: string[];
-  microorganism?: string;
   flavorNotes: string[];
-  textureNotes?: string[];
-  caffeineNote?: string;
-  antioxidantNote?: string;
-  digestionNote?: string;
-  prebioticNote?: string;
-  consistencyNote?: string;
-  sustainabilityNotes?: string[];
-  moldAflatoxinNote?: string;
-  brewMethods: string[];
-  customizableFermentation?: boolean;
-  heroImage: string;
-  galleryImages: string[];
+  origin?: string;
+  process?: string;
+  packageSizes?: string[];
 };
 
 export const coffees: Coffee[] = [
   {
-    slug: "citrus-wash-anaerobic-filter",
-    name: "Citrus Wash Anaerobic Filter",
+    slug: "espresso",
+    name: "Espresso",
     shortDescription:
-      "A controlled liquid fermentation filter coffee with bright citrus and clean sweetness.",
-    origin: "Sidama, Ethiopia",
-    roastLevel: "light",
-    processType: "washed with controlled liquid fermentation",
-    fermentationStyle: "closed-tank, low-oxygen, fruit-assisted",
-    anaerobic: true,
-    chemicalAdditiveFree: true,
-    artificialAromaFree: true,
-    extractsUsed: ["lemon peel infusion", "orange blossom water"],
-    microorganism: "selected lactic acid cultures from previous batches",
-    flavorNotes: ["lemon zest", "white peach", "orange blossom"],
-    textureNotes: ["silky", "light", "clean finish"],
-    caffeineNote: "Moderate caffeine, designed for clarity over intensity.",
-    antioxidantNote: "Fermentation is tuned to preserve bright, stable acidity.",
-    digestionNote: "Clean profile aimed at low bitterness and low stomach load.",
-    prebioticNote:
-      "Fermentation is tuned for stability, not for aggressive prebiotic effects.",
-    consistencyNote:
-      "Built for repeatable extractions with tight fermentation windows.",
-    sustainabilityNotes: [
-      "Reduced water use versus classic multi-stage washing.",
-      "Fermentation liquid is re-used and filtered across batches.",
-    ],
-    moldAflatoxinNote:
-      "Lots are screened for mold and off-notes before and after fermentation.",
-    brewMethods: ["V60", "Kalita", "batch brewer"],
-    customizableFermentation: false,
-    heroImage: "/images/coffees/citrus-wash-anaerobic-filter-hero.jpg",
-    galleryImages: [
-      "/images/coffees/citrus-wash-anaerobic-filter-1.jpg",
-      "/images/coffees/citrus-wash-anaerobic-filter-2.jpg",
-    ],
+      "Yoğun gövdeli, fındıksı kakao karakterine sahip espresso harmanı.",
+    flavorNotes: ["Fındıksı kakao"],
+    packageSizes: ["250 gr", "1 kg"],
   },
   {
-    slug: "red-fruit-anaerobic-espresso",
-    name: "Red Fruit Anaerobic Espresso",
+    slug: "turk-kahvesi",
+    name: "Türk Kahvesi",
     shortDescription:
-      "An anaerobic espresso built around controlled liquid fermentation and red-fruit clarity.",
-    origin: "Huila, Colombia",
-    roastLevel: "medium",
-    processType: "anaerobic controlled liquid fermentation",
-    fermentationStyle: "sealed stainless tank, fruit-assisted",
-    anaerobic: true,
-    chemicalAdditiveFree: true,
-    artificialAromaFree: true,
-    extractsUsed: ["hibiscus reduction", "red grape skin extract"],
-    microorganism:
-      "house lactic and yeast culture maintained across fermentation cycles",
-    flavorNotes: ["ripe strawberry", "red grape", "cocoa nib"],
-    textureNotes: ["dense", "coating", "lingering finish"],
-    caffeineNote: "Higher perceived intensity, tuned for short milk drinks.",
-    antioxidantNote:
-      "Extended contact time is kept within safe windows for a stable cup.",
-    digestionNote:
-      "Fermentation aims to reduce harsh bitterness common in darker espresso roasts.",
-    prebioticNote:
-      "Not positioned as a health product; focus is on clarity and consistency.",
-    consistencyNote:
-      "Profile is locked to be repeatable across roasts and harvests where possible.",
-    sustainabilityNotes: [
-      "Fermentation liquid is tracked and filtered between runs.",
-      "Batches are cupped for off-flavors tied to poor storage or contamination.",
-    ],
-    moldAflatoxinNote:
-      "Lots are rejected if storage or moisture history is uncertain.",
-    brewMethods: ["espresso", "aeropress", "moka pot"],
-    customizableFermentation: false,
-    heroImage: "/images/coffees/red-fruit-anaerobic-espresso-hero.jpg",
-    galleryImages: [
-      "/images/coffees/red-fruit-anaerobic-espresso-1.jpg",
-      "/images/coffees/red-fruit-anaerobic-espresso-2.jpg",
-    ],
+      "Klasik Türk kahvesi formunda, bitter çikolata ve kavrulmuş fındık çağrışımlı bir profil.",
+    flavorNotes: ["Bitter çikolata", "kakao", "kavrulmuş fındık"],
+    packageSizes: ["250 gr", "1 kg"],
   },
   {
-    slug: "low-impact-night-brew",
-    name: "Low Impact Night Brew",
+    slug: "rose-fermente-turk-kahvesi",
+    name: "Rose Fermente Türk Kahvesi",
     shortDescription:
-      "A later-day coffee built around softer acidity, controlled fermentation, and gentle digestion.",
-    origin: "Guatemala & Mexico",
-    roastLevel: "medium",
-    processType: "hybrid washed / liquid fermentation",
-    fermentationStyle: "closed-tank, short-contact, low-oxygen",
-    anaerobic: true,
-    chemicalAdditiveFree: true,
-    artificialAromaFree: true,
-    extractsUsed: ["chicory root infusion"],
-    microorganism: "selected lactic culture with low acetic expression",
-    flavorNotes: ["milk chocolate", "roasted hazelnut", "subtle dried fig"],
-    textureNotes: ["round", "soft", "low bitterness"],
-    caffeineNote: "Designed to feel gentler in the evening, not decaf.",
-    antioxidantNote:
-      "Balanced profile with focus on stability rather than extreme extraction.",
-    digestionNote:
-      "Built for low sharpness and a smoother experience for sensitive drinkers.",
-    prebioticNote:
-      "Uses chicory infusion as a subtle prebiotic support without dominating flavor.",
-    consistencyNote:
-      "Tank timings and temperature are logged for repeatable outcomes.",
-    sustainabilityNotes: [
-      "Fermentation liquid use is monitored to reduce waste.",
-      "Roasts are profiled to avoid unnecessary energy use.",
-    ],
-    moldAflatoxinNote:
-      "Lots are tested and green storage is controlled for moisture and airflow.",
-    brewMethods: ["French press", "V60", "cold brew"],
-    customizableFermentation: true,
-    heroImage: "/images/coffees/low-impact-night-brew-hero.jpg",
-    galleryImages: [
-      "/images/coffees/low-impact-night-brew-1.jpg",
-      "/images/coffees/low-impact-night-brew-2.jpg",
-    ],
+      "Gül notalarıyla desteklenmiş fermente Türk kahvesi yorumu.",
+    flavorNotes: ["Gül"],
+    packageSizes: ["250 gr"],
+  },
+  {
+    slug: "strawberry-fermente-turk-kahvesi",
+    name: "Strawberry Fermente Türk Kahvesi",
+    shortDescription:
+      "Çilek aromatiklerini öne çıkaran fermente Türk kahvesi yorumu.",
+    flavorNotes: ["Çilek"],
+    packageSizes: ["250 gr"],
+  },
+  {
+    slug: "milk-chocolate-fermente-turk-kahvesi",
+    name: "Milk Chocolate Fermente Türk Kahvesi",
+    shortDescription:
+      "Fındık ve çikolata çağrışımlarıyla daha yuvarlak bir fermente Türk kahvesi profili.",
+    flavorNotes: ["Fındık", "çikolata"],
+    packageSizes: ["250 gr"],
+  },
+  {
+    slug: "red-forest-tart",
+    name: "Red Forest Tart",
+    shortDescription:
+      "Kırmızı elma, kırmızı meyve ve fındık tonlarını bir araya getiren zengin bir profil.",
+    flavorNotes: ["Kırmızı elma", "frenk üzümü", "fındık", "çikolata"],
+    packageSizes: ["250 gr", "1 kg", "200 gr"],
+  },
+  {
+    slug: "rubus",
+    name: "Rubus",
+    shortDescription:
+      "Böğürtlen karakteri etrafında kurgulanmış, kırmızı meyve odaklı bir kahve.",
+    flavorNotes: ["Böğürtlen"],
+    packageSizes: ["250 gr", "1 kg", "200 gr"],
+  },
+  {
+    slug: "ambrosia",
+    name: "Ambrosia",
+    shortDescription:
+      "Mango ve çilek çağrışımları taşıyan, meyve yönü güçlü bir profil.",
+    flavorNotes: ["Mango", "Çilek"],
+    packageSizes: ["250 gr", "1 kg", "200 gr"],
+  },
+  {
+    slug: "luna",
+    name: "Luna",
+    shortDescription:
+      "Yaban mersini, çarkıfelek ve limon notalarını bir arada hissettiren aydınlık bir profil.",
+    flavorNotes: ["Yaban mersini", "çarkıfelek", "limon"],
+    packageSizes: ["250 gr", "1 kg", "200 gr"],
+  },
+  {
+    slug: "purpurea",
+    name: "Purpurea",
+    shortDescription:
+      "Yasemin ve bergamot dokunuşlarını böğürtlen ve frenk üzümüyle buluşturan kompleks bir profil.",
+    flavorNotes: ["Yasemin", "bergamot", "böğürtlen", "frenk üzümü"],
+    packageSizes: ["200 gr"],
+  },
+  {
+    slug: "blue-velvet",
+    name: "Blue Velvet",
+    shortDescription:
+      "Yaban mersini, şeftali, vanilya ve kakao notalarıyla kadifemsi bir tat profili.",
+    flavorNotes: ["Yaban mersini", "şeftali", "vanilya", "kakao"],
+    packageSizes: ["200 gr"],
   },
 ];
 
