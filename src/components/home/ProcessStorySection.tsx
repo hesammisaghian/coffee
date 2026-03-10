@@ -1,4 +1,4 @@
-export function ProcessPlaceholderSection() {
+export function ProcessStorySection() {
   return (
     <section
       aria-labelledby="production-process-heading"

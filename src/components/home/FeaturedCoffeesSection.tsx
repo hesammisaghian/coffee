@@ -1,7 +1,7 @@
 import Link from "next/link";
 import { coffees } from "../../data/coffees";
 
-export function ProductsPlaceholderSection() {
+export function FeaturedCoffeesSection() {
   const featured = coffees.slice(0, 3);
 
   return (
