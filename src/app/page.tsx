@@ -1,7 +1,6 @@
 import { HeroSection } from "../components/home/HeroSection";
 import { BrandIntroSection } from "../components/home/BrandIntroSection";
 import { ProcessStorySection } from "../components/home/ProcessStorySection";
-import { FeaturedCoffeesSection } from "../components/home/FeaturedCoffeesSection";
 import { ContactCtaSection } from "../components/home/ContactCtaSection";
 
 export default function Home() {
@@ -11,7 +10,6 @@ export default function Home() {
         <HeroSection />
         <BrandIntroSection />
         <ProcessStorySection />
-        <FeaturedCoffeesSection />
         <ContactCtaSection />
       </div>
     </main>

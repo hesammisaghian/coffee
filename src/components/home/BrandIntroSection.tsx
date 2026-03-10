@@ -8,12 +8,13 @@ export function BrandIntroSection() {
         id="brand-introduction-heading"
         className="text-xl font-semibold tracking-tight"
       >
-        Brand introduction
+        Marka hakkında
       </h2>
       <p className="max-w-2xl text-sm text-zinc-600">
-        This website is the home for a premium coffee brand. Until the final name is
-        chosen, the language stays neutral and focused on the essentials: quality,
-        clarity, and a quiet, cinematic presentation of the coffee story.
+        Bu proje, sadece yeni bir kahve ürünü değil; yeşil kahve çekirdeğini{" "}
+        kontrollü sıvı fermantasyonla yeniden ele alan, süreç odaklı bir yaklaşım.
+        Amaç, katkısız, tutarlı, daha yumuşak ve daha okunabilir bir fincan profili
+        yaratmak.
       </p>
     </section>
   );

@@ -10,18 +10,19 @@ export function ContactCtaSection() {
         id="contact-heading"
         className="text-xl font-semibold tracking-tight"
       >
-        Contact for orders and questions
+        İletişim ve işbirliği
       </h2>
       <p className="max-w-2xl text-sm text-zinc-600">
-        Until a full contact page is built, visitors can use this entry point to start a
-        conversation about orders, collaborations, or questions about the coffees.
+        Süreç, ürünler veya potansiyel işbirlikleri hakkında konuşmak isterseniz, bizimle
+        buradan iletişime geçebilirsiniz. Şu an için sipariş ve proje talepleri manuel
+        olarak yönetiliyor.
       </p>
       <div>
         <Link
           href="/contact"
           className="inline-flex items-center rounded-full bg-zinc-900 px-5 py-2 text-sm font-medium text-zinc-50"
         >
-          Go to contact page
+          İletişim sayfasına git
         </Link>
       </div>
     </section>

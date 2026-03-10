@@ -2,14 +2,15 @@ export function HeroSection() {
   return (
     <header className="space-y-4">
       <p className="text-sm font-medium tracking-wide text-zinc-500">
-        Thoughtfully roasted coffee, coming soon.
+        Kontrollü sıvı fermantasyonla yeniden düşünülmüş kahve.
       </p>
       <h1 className="text-3xl font-semibold tracking-tight sm:text-4xl">
-        A calm, cinematic home for a new coffee brand.
+        Fermentasyon odaklı yeni nesil kahve markası.
       </h1>
       <p className="max-w-2xl text-base text-zinc-600">
-        This first version of the homepage quietly introduces the future brand, its craft,
-        and a clear path to explore coffees and get in touch.
+        Bu sayfa, kimyasal katkı kullanmadan, yeşil çekirdekten fincana kadar kontrollü
+        sıvı fermantasyon etrafında kurulan bir Türk kahve markasının sessiz bir
+        tanıtımıdır.
       </p>
     </header>
   );

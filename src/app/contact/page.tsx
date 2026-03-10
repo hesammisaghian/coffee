@@ -4,28 +4,33 @@ export default function ContactPage() {
       <div className="mx-auto flex max-w-4xl flex-col gap-8 px-6 py-16 sm:py-20">
         <header className="space-y-3">
           <h1 className="text-2xl font-semibold tracking-tight sm:text-3xl">
-            Contact
+            İletişim
           </h1>
           <p className="max-w-2xl text-sm text-zinc-600">
-            This page will later provide clear information on how to get in touch for
-            orders, questions, and potential wholesale inquiries.
+            Kontrollü sıvı fermantasyon ve katkısız üretim etrafında kurulan bu kahve
+            markasıyla ilgili tüm sorularınız ve talepleriniz için buradasınız.
           </p>
         </header>
 
         <section
-          aria-labelledby="contact-flow-placeholder-heading"
-          className="space-y-2 border-t border-zinc-200 pt-8"
+          aria-labelledby="contact-intent-heading"
+          className="space-y-3 border-t border-zinc-200 pt-8"
         >
           <h2
-            id="contact-flow-placeholder-heading"
+            id="contact-intent-heading"
             className="text-base font-semibold tracking-tight"
           >
-            Contact & order flow (placeholder)
+            Neler için bizimle iletişime geçebilirsiniz?
           </h2>
-          <p className="max-w-2xl text-sm text-zinc-600">
-            A future contact flow will live here, including simple ways to reach the
-            brand about purchasing coffee and asking questions. No form is implemented
-            yet at this stage.
+          <ul className="max-w-2xl list-disc space-y-1 pl-5 text-sm text-zinc-600">
+            <li>Erken dönem veya küçük ölçekli sipariş talepleri.</li>
+            <li>İçerik, marka veya ürün geliştirme odağında işbirliği fikirleri.</li>
+            <li>Coffee shop veya toptan satış için ön görüşme talepleri.</li>
+            <li>Ürünler, süreç, fermantasyon yaklaşımı ve kalite standartları hakkında sorular.</li>
+          </ul>
+          <p className="max-w-2xl text-xs text-zinc-500">
+            Şu anda tüm talepler manuel olarak değerlendiriliyor; yanıt süreleri talep
+            yoğunluğuna ve proje türüne göre değişebilir.
           </p>
         </section>
       </div>

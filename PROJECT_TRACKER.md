@@ -29,6 +29,8 @@
  - [x] Refine the coffee data model and product pages to be CMS-ready while still using local data.
  - [x] Document a practical content/admin architecture plan in `ADMIN_CONTENT_PLAN.md` to prepare for a future lightweight admin interface.
  - [x] Replace the homepage process and products placeholders with a first real production story and featured coffees section.
+ - [x] Refine the homepage into a Turkish brand and süreç odaklı anlatım, and remove featured coffees from the homepage.
+ - [x] Refine the contact page into a minimal, Türkçe marka iletişim sayfası aligned with the homepage direction.
 
 ---
 
