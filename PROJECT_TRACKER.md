@@ -28,6 +28,7 @@
  - [x] Extract small coffee data helpers and use them in the coffee detail route with static params and a back link to the list.
  - [x] Refine the coffee data model and product pages to be CMS-ready while still using local data.
  - [x] Document a practical content/admin architecture plan in `ADMIN_CONTENT_PLAN.md` to prepare for a future lightweight admin interface.
+ - [x] Replace the homepage process and products placeholders with a first real production story and featured coffees section.
 
 ---
 
