@@ -1,7 +1,19 @@
+"use client";
+
 import Link from "next/link";
-import { coffees } from "../../../data/coffees";
+import { useState } from "react";
+import { coffees, type Coffee } from "../../../data/coffees";
 
 export default function AdminProductsPage() {
+  const [products, setProducts] = useState<Coffee[]>(coffees);
+
+  const handleDelete = (coffee: Coffee) => {
+    const message = `"${coffee.name}" ürününü listeden kaldırmak istediğinize emin misiniz? (Yalnızca bu oturumda kaldırılır; sayfa yenilenince veri geri gelir.)`;
+    if (window.confirm(message)) {
+      setProducts((prev) => prev.filter((p) => p.slug !== coffee.slug));
+    }
+  };
+
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900">
       <div className="mx-auto flex max-w-5xl flex-col gap-6 px-6 py-10">
@@ -27,6 +39,10 @@ export default function AdminProductsPage() {
             <h2 className="text-sm font-medium text-zinc-800">
               Mevcut ürünler (yerel veri)
             </h2>
+            <p className="mt-1 text-[11px] text-zinc-500">
+              Silme işlemi şu anda yalnızca yerel prototip davranışıdır; sayfa
+              yenilenince veri geri gelir.
+            </p>
           </div>
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-zinc-200 text-sm">
@@ -59,7 +75,7 @@ export default function AdminProductsPage() {
                 </tr>
               </thead>
               <tbody className="divide-y divide-zinc-200 bg-white">
-                {coffees.map((coffee) => (
+                {products.map((coffee) => (
                   <tr key={coffee.slug}>
                     <td className="px-4 py-2 text-zinc-800">{coffee.name}</td>
                     <td className="px-4 py-2 text-xs text-zinc-500">
@@ -117,12 +133,21 @@ export default function AdminProductsPage() {
                       )}
                     </td>
                     <td className="px-4 py-2 text-right">
-                      <Link
-                        href={`/admin/products/${coffee.slug}`}
-                        className="inline-flex items-center rounded-md border border-zinc-200 px-2 py-1 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
-                      >
-                        Düzenle
-                      </Link>
+                      <div className="flex flex-wrap items-center justify-end gap-2">
+                        <Link
+                          href={`/admin/products/${coffee.slug}`}
+                          className="inline-flex items-center rounded-md border border-zinc-200 px-2 py-1 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
+                        >
+                          Düzenle
+                        </Link>
+                        <button
+                          type="button"
+                          onClick={() => handleDelete(coffee)}
+                          className="inline-flex items-center rounded-md border border-zinc-200 px-2 py-1 text-xs font-medium text-red-600 hover:bg-red-50"
+                        >
+                          Sil
+                        </button>
+                      </div>
                     </td>
                   </tr>
                 ))}

@@ -51,6 +51,8 @@
 - [x] Add yayın hazırlığı ve eksik alan özeti to admin products overview.
 - [x] Show yayın hazırlığı ve eksik bilgi uyarıları doğrudan admin product form içinde.
 - [x] Allow kısa açıklama ve paket boyutları alanlarının doğrudan admin product form üzerinden düzenlenmesi.
+- [x] Fix admin edit route (params Promise) so Düzenle opens edit form for every product.
+- [x] Add local-only delete action to admin products list (confirm + remove from session list).
 
 ---
 

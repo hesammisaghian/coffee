@@ -1,17 +1,20 @@
 import { notFound } from "next/navigation";
 import { ProductForm, type ProductFormInitial } from "../../../../components/admin/ProductForm";
-import { getCoffeeBySlug } from "../../../../data/coffees";
+import { getCoffeeBySlug, getCoffeeSlugs } from "../../../../data/coffees";
 
 type AdminEditProductPageProps = {
-  params: {
-    slug: string;
-  };
+  params: Promise<{ slug: string }>;
 };
 
-export default function AdminEditProductPage({
+export function generateStaticParams() {
+  return getCoffeeSlugs().map((slug) => ({ slug }));
+}
+
+export default async function AdminEditProductPage({
   params,
 }: AdminEditProductPageProps) {
-  const product = getCoffeeBySlug(params.slug);
+  const { slug } = await params;
+  const product = getCoffeeBySlug(slug);
 
   if (!product) {
     return notFound();
