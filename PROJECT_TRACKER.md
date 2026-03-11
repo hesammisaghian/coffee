@@ -43,6 +43,7 @@
 - [x] Refine product schema and detail page for future admin: fixed fields + dynamic text-based fields (label, value, visible, order).
 - [x] Align simplified admin-oriented product schema in code (fixed fields + dinamik metin alanları) with ADMIN_SCHEMA_PLAN.md.
 - [x] Add admin UI prototype for managing products (local-only, no backend).
+- [x] Add admin edit-page prototype for existing products (local-only, no backend).
 
 ---
 

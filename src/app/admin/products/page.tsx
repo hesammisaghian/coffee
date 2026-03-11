@@ -51,13 +51,12 @@ export default function AdminProductsPage() {
                       {coffee.slug}
                     </td>
                     <td className="px-4 py-2 text-right">
-                      <button
-                        type="button"
+                      <Link
+                        href={`/admin/products/${coffee.slug}`}
                         className="inline-flex items-center rounded-md border border-zinc-200 px-2 py-1 text-xs font-medium text-zinc-700 hover:bg-zinc-50"
-                        aria-label="Düzenle (henüz aktif değil)"
                       >
                         Düzenle
-                      </button>
+                      </Link>
                     </td>
                   </tr>
                 ))}
