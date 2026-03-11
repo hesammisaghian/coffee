@@ -31,6 +31,35 @@ type ProductFormProps = {
   initial?: ProductFormInitial;
 };
 
+function slugify(input: string): string {
+  const map: Record<string, string> = {
+    ü: "u",
+    Ü: "u",
+    ö: "o",
+    Ö: "o",
+    ı: "i",
+    İ: "i",
+    ş: "s",
+    Ş: "s",
+    ç: "c",
+    Ç: "c",
+    ğ: "g",
+    Ğ: "g",
+  };
+
+  const replaced = input
+    .split("")
+    .map((ch) => map[ch] ?? ch)
+    .join("")
+    .toLowerCase();
+
+  return replaced
+    .replace(/[^a-z0-9\s-]/g, "")
+    .replace(/\s+/g, "-")
+    .replace(/-+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
 export function ProductForm({ initial }: ProductFormProps) {
   const [saveStatus, setSaveStatus] = useState<
     "idle" | "saving" | "success" | "error"
@@ -39,6 +68,9 @@ export function ProductForm({ initial }: ProductFormProps) {
 
   const [name, setName] = useState(initial?.name ?? "");
   const [slug, setSlug] = useState(initial?.slug ?? "");
+  const [slugManuallyEdited, setSlugManuallyEdited] = useState<boolean>(
+    Boolean(initial?.slug)
+  );
   const [heroImage, setHeroImage] = useState(initial?.heroImage ?? "");
   const [buyLink, setBuyLink] = useState(initial?.buyLink ?? "");
   const [isPublished, setIsPublished] = useState(initial?.isPublished ?? false);
@@ -132,6 +164,16 @@ export function ProductForm({ initial }: ProductFormProps) {
     };
   }, [name, slug, heroImage, galleryImages, buyLink, isPublished, dynamicFields]);
 
+  const handleNameChange = (value: string) => {
+    setName(value);
+
+    // Yeni ürün için, slug elle düzenlenmediyse isme göre otomatik üret.
+    if (!slugManuallyEdited && !initial?.slug) {
+      const next = slugify(value);
+      setSlug(next);
+    }
+  };
+
   const handleSave = () => {
     const validationErrors: string[] = [];
 
@@ -180,7 +222,6 @@ export function ProductForm({ initial }: ProductFormProps) {
     setSaveStatus("saving");
 
     // Yerel-only mock kaydetme: konsola yaz ve başarı durumu göster.
-    // eslint-disable-next-line no-console
     console.log("Mock admin product save payload:", previewPayload);
 
     setSaveStatus("success");
@@ -199,7 +240,7 @@ export function ProductForm({ initial }: ProductFormProps) {
             <input
               type="text"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => handleNameChange(e.target.value)}
               className="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
             />
           </div>
@@ -210,9 +251,16 @@ export function ProductForm({ initial }: ProductFormProps) {
             <input
               type="text"
               value={slug}
-              onChange={(e) => setSlug(e.target.value)}
+              onChange={(e) => {
+                setSlug(e.target.value);
+                setSlugManuallyEdited(true);
+              }}
               className="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
             />
+            <p className="text-[11px] text-zinc-500">
+              Slug, ürün adından otomatik üretilebilir; isterseniz burada elle
+              düzenleyebilirsiniz.
+            </p>
           </div>
           <div className="space-y-1">
             <label className="block text-xs font-medium text-zinc-600">

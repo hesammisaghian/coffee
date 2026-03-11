@@ -46,6 +46,8 @@
 - [x] Add admin edit-page prototype for existing products (local-only, no backend).
 - [x] Refine admin product form to support tek değer / çoklu değer dinamik alan modları.
 - [x] Add local-only mock save flow and basit doğrulama to admin product form.
+- [x] Refine admin products list into a daha faydalı yönetim görünümü (yayın, hero, buy link, dinamik alan sayısı).
+- [x] Add otomatik slug üretimi (isimden slug, manuel override destekli) to admin product form.
 
 ---
 

@@ -38,6 +38,21 @@ export default function AdminProductsPage() {
                   <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
                     Slug
                   </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Yayın
+                  </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Hero
+                  </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Buy link
+                  </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Dinamik alan
+                  </th>
+                  <th className="px-4 py-2 text-left text-xs font-medium uppercase tracking-wide text-zinc-500">
+                    Durum
+                  </th>
                   <th className="px-4 py-2 text-right text-xs font-medium uppercase tracking-wide text-zinc-500">
                     İşlemler
                   </th>
@@ -49,6 +64,26 @@ export default function AdminProductsPage() {
                     <td className="px-4 py-2 text-zinc-800">{coffee.name}</td>
                     <td className="px-4 py-2 text-xs text-zinc-500">
                       {coffee.slug}
+                    </td>
+                    <td className="px-4 py-2 text-xs text-zinc-700">
+                      {coffee.isPublished ? "Yayında" : "Taslak"}
+                    </td>
+                    <td className="px-4 py-2 text-xs text-zinc-700">
+                      {coffee.heroImage ? "Tanımlı" : "Yok"}
+                    </td>
+                    <td className="px-4 py-2 text-xs text-zinc-700">
+                      {coffee.buyLink ? "Var" : "Yok"}
+                    </td>
+                    <td className="px-4 py-2 text-xs text-zinc-700">
+                      {(coffee.dynamicFields && coffee.dynamicFields.length) || 0}
+                    </td>
+                    <td className="px-4 py-2 text-xs text-zinc-700">
+                      {coffee.name &&
+                      coffee.slug &&
+                      coffee.heroImage &&
+                      coffee.buyLink
+                        ? "Temel yapı hazır"
+                        : "Temel bilgiler eksik"}
                     </td>
                     <td className="px-4 py-2 text-right">
                       <Link
