@@ -8,6 +8,7 @@ type DynamicFieldInput = {
   rawValue: string;
   visible: boolean;
   order: number;
+  valueMode: "single" | "multiple";
 };
 
 export type ProductFormInitial = {
@@ -48,10 +49,11 @@ export function ProductForm({ initial }: ProductFormProps) {
         id: field.id,
         label: field.label,
         rawValue: Array.isArray(field.value)
-          ? field.value.join(", ")
+          ? field.value.join("\n")
           : field.value ?? "",
         visible: field.visible,
         order: field.order,
+        valueMode: Array.isArray(field.value) ? "multiple" : "single",
       }))
   );
 
@@ -75,6 +77,7 @@ export function ProductForm({ initial }: ProductFormProps) {
         rawValue: "",
         visible: true,
         order: prev.length + 1,
+        valueMode: "single",
       },
     ]);
   };
@@ -97,9 +100,9 @@ export function ProductForm({ initial }: ProductFormProps) {
       const trimmed = field.rawValue.trim();
       let value: string | string[] = trimmed;
 
-      if (trimmed.includes(",")) {
+      if (field.valueMode === "multiple") {
         value = trimmed
-          .split(",")
+          .split("\n")
           .map((part) => part.trim())
           .filter(Boolean);
       }
@@ -283,21 +286,75 @@ export function ProductForm({ initial }: ProductFormProps) {
                       className="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
                     />
                   </div>
-                  <div className="space-y-1">
-                    <label className="block text-xs font-medium text-zinc-600">
-                      Değer
-                    </label>
-                    <input
-                      type="text"
-                      value={field.rawValue}
-                      onChange={(e) =>
-                        handleUpdateField(field.id, {
-                          rawValue: e.target.value,
-                        })
-                      }
-                      placeholder="Tek değer veya virgülle ayrılmış liste"
-                      className="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
-                    />
+                  <div className="space-y-2">
+                    <div className="flex flex-wrap items-center gap-3">
+                      <span className="text-xs font-medium text-zinc-600">
+                        Değer modu
+                      </span>
+                      <div className="flex items-center gap-3 text-xs text-zinc-700">
+                        <label className="inline-flex items-center gap-1">
+                          <input
+                            type="radio"
+                            name={`mode-${field.id}`}
+                            checked={field.valueMode === "single"}
+                            onChange={() =>
+                              handleUpdateField(field.id, {
+                                valueMode: "single",
+                              })
+                            }
+                            className="h-3 w-3 border-zinc-300 text-zinc-900"
+                          />
+                          <span>Tek değer</span>
+                        </label>
+                        <label className="inline-flex items-center gap-1">
+                          <input
+                            type="radio"
+                            name={`mode-${field.id}`}
+                            checked={field.valueMode === "multiple"}
+                            onChange={() =>
+                              handleUpdateField(field.id, {
+                                valueMode: "multiple",
+                              })
+                            }
+                            className="h-3 w-3 border-zinc-300 text-zinc-900"
+                          />
+                          <span>Çoklu değer</span>
+                        </label>
+                      </div>
+                    </div>
+                    <div className="space-y-1">
+                      <label className="block text-xs font-medium text-zinc-600">
+                        Değer
+                      </label>
+                      {field.valueMode === "single" ? (
+                        <input
+                          type="text"
+                          value={field.rawValue}
+                          onChange={(e) =>
+                            handleUpdateField(field.id, {
+                              rawValue: e.target.value,
+                            })
+                          }
+                          placeholder="Tek satır metin"
+                          className="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
+                        />
+                      ) : (
+                        <textarea
+                          value={field.rawValue}
+                          onChange={(e) =>
+                            handleUpdateField(field.id, {
+                              rawValue: e.target.value,
+                            })
+                          }
+                          placeholder={"Her satıra bir değer yazın\nÖrn:\nFındık\nÇikolata\nMeyvemsi"}
+                          className="min-h-[90px] w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
+                        />
+                      )}
+                      <p className="text-[10px] text-zinc-500">
+                        Tek değer: tek satır metin. Çoklu değer: her satır ayrı
+                        bir öğe olarak yorumlanır.
+                      </p>
+                    </div>
                   </div>
                 </div>
                 <div className="mt-3 flex flex-wrap items-center gap-4">

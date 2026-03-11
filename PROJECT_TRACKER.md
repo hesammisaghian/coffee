@@ -44,6 +44,7 @@
 - [x] Align simplified admin-oriented product schema in code (fixed fields + dinamik metin alanları) with ADMIN_SCHEMA_PLAN.md.
 - [x] Add admin UI prototype for managing products (local-only, no backend).
 - [x] Add admin edit-page prototype for existing products (local-only, no backend).
+- [x] Refine admin product form to support tek değer / çoklu değer dinamik alan modları.
 
 ---
 
