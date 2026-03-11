@@ -48,6 +48,7 @@
 - [x] Add local-only mock save flow and basit doğrulama to admin product form.
 - [x] Refine admin products list into a daha faydalı yönetim görünümü (yayın, hero, buy link, dinamik alan sayısı).
 - [x] Add otomatik slug üretimi (isimden slug, manuel override destekli) to admin product form.
+- [x] Add yayın hazırlığı ve eksik alan özeti to admin products overview.
 
 ---
 

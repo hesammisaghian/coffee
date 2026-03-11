@@ -80,10 +80,41 @@ export default function AdminProductsPage() {
                     <td className="px-4 py-2 text-xs text-zinc-700">
                       {coffee.name &&
                       coffee.slug &&
+                      coffee.shortDescription &&
+                      coffee.packageSizes &&
+                      coffee.packageSizes.length > 0 &&
                       coffee.heroImage &&
                       coffee.buyLink
-                        ? "Temel yapı hazır"
-                        : "Temel bilgiler eksik"}
+                        ? "Yayına hazır"
+                        : "Eksikler var"}
+                      {!(
+                        coffee.name &&
+                        coffee.slug &&
+                        coffee.shortDescription &&
+                        coffee.packageSizes &&
+                        coffee.packageSizes.length > 0 &&
+                        coffee.heroImage &&
+                        coffee.buyLink
+                      ) && (
+                        <div className="mt-1 text-[11px] text-zinc-500">
+                          {(() => {
+                            const missing: string[] = [];
+                            if (!coffee.shortDescription) {
+                              missing.push("Kısa açıklama eksik");
+                            }
+                            if (!coffee.packageSizes || coffee.packageSizes.length === 0) {
+                              missing.push("Paket boyutu eksik");
+                            }
+                            if (!coffee.heroImage) {
+                              missing.push("Hero görsel eksik");
+                            }
+                            if (!coffee.buyLink) {
+                              missing.push("Buy link eksik");
+                            }
+                            return missing.join(" • ") || "Temel bilgiler eksik";
+                          })()}
+                        </div>
+                      )}
                     </td>
                     <td className="px-4 py-2 text-right">
                       <Link
