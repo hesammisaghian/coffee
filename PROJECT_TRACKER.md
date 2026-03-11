@@ -45,6 +45,7 @@
 - [x] Add admin UI prototype for managing products (local-only, no backend).
 - [x] Add admin edit-page prototype for existing products (local-only, no backend).
 - [x] Refine admin product form to support tek değer / çoklu değer dinamik alan modları.
+- [x] Add local-only mock save flow and basit doğrulama to admin product form.
 
 ---
 

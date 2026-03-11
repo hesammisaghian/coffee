@@ -32,6 +32,11 @@ type ProductFormProps = {
 };
 
 export function ProductForm({ initial }: ProductFormProps) {
+  const [saveStatus, setSaveStatus] = useState<
+    "idle" | "saving" | "success" | "error"
+  >("idle");
+  const [errors, setErrors] = useState<string[]>([]);
+
   const [name, setName] = useState(initial?.name ?? "");
   const [slug, setSlug] = useState(initial?.slug ?? "");
   const [heroImage, setHeroImage] = useState(initial?.heroImage ?? "");
@@ -126,6 +131,60 @@ export function ProductForm({ initial }: ProductFormProps) {
       dynamicFields: dynamicPayload,
     };
   }, [name, slug, heroImage, galleryImages, buyLink, isPublished, dynamicFields]);
+
+  const handleSave = () => {
+    const validationErrors: string[] = [];
+
+    if (!name.trim()) {
+      validationErrors.push("Ürün adı boş bırakılamaz.");
+    }
+    if (!slug.trim()) {
+      validationErrors.push("Slug boş bırakılamaz.");
+    }
+
+    dynamicFields.forEach((field, index) => {
+      const label = field.label.trim();
+      const raw = field.rawValue.trim();
+      if (!label) {
+        validationErrors.push(
+          `Dinamik alan #${index + 1} için label boş bırakılamaz.`
+        );
+      }
+
+      if (field.valueMode === "single") {
+        if (!raw) {
+          validationErrors.push(
+            `Dinamik alan "${label || `#${index + 1}`}" için değer boş bırakılamaz.`
+          );
+        }
+      } else {
+        const lines = raw
+          .split("\n")
+          .map((line) => line.trim())
+          .filter(Boolean);
+        if (lines.length === 0) {
+          validationErrors.push(
+            `Dinamik alan "${label || `#${index + 1}`}" için en az bir satır değer girilmelidir.`
+          );
+        }
+      }
+    });
+
+    if (validationErrors.length > 0) {
+      setErrors(validationErrors);
+      setSaveStatus("error");
+      return;
+    }
+
+    setErrors([]);
+    setSaveStatus("saving");
+
+    // Yerel-only mock kaydetme: konsola yaz ve başarı durumu göster.
+    // eslint-disable-next-line no-console
+    console.log("Mock admin product save payload:", previewPayload);
+
+    setSaveStatus("success");
+  };
 
   return (
     <div className="flex flex-col gap-8">
@@ -421,6 +480,44 @@ export function ProductForm({ initial }: ProductFormProps) {
         <pre className="mt-4 max-h-80 overflow-auto rounded-md bg-zinc-900 p-4 text-xs text-zinc-100">
           {JSON.stringify(previewPayload, null, 2)}
         </pre>
+      </section>
+
+      {/* Kaydet alanı */}
+      <section className="space-y-3 rounded-lg border border-zinc-200 bg-white p-4 sm:p-6">
+        {errors.length > 0 && (
+          <div className="space-y-1 rounded-md border border-red-200 bg-red-50 px-3 py-2">
+            <p className="text-xs font-semibold text-red-700">
+              Formda düzeltmeniz gereken alanlar var:
+            </p>
+            <ul className="list-disc space-y-0.5 pl-4 text-xs text-red-700">
+              {errors.map((error) => (
+                <li key={error}>{error}</li>
+              ))}
+            </ul>
+          </div>
+        )}
+
+        {saveStatus === "success" && errors.length === 0 && (
+          <div className="rounded-md border border-emerald-200 bg-emerald-50 px-3 py-2 text-xs text-emerald-800">
+            Taslak kayıt simülasyonu başarılı. Veri yalnızca yerel olarak işlendi,
+            herhangi bir sunucuya gönderilmedi.
+          </div>
+        )}
+
+        <div className="flex flex-wrap items-center gap-3">
+          <button
+            type="button"
+            onClick={handleSave}
+            disabled={saveStatus === "saving"}
+            className="inline-flex items-center justify-center rounded-md border border-zinc-200 bg-zinc-900 px-4 py-2 text-sm font-medium text-white hover:bg-zinc-800 disabled:cursor-not-allowed disabled:opacity-70"
+          >
+            {saveStatus === "saving" ? "Kaydediliyor..." : "Kaydet"}
+          </button>
+          <p className="text-[11px] text-zinc-500">
+            Bu form şu anda yalnızca yerel bir yönetim prototipi. Kaydet butonu
+            gerçek bir veritabanına yazmaz.
+          </p>
+        </div>
       </section>
     </div>
   );
