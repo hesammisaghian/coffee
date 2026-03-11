@@ -20,6 +20,8 @@ export default function AdminEditProductPage({
   const initial: ProductFormInitial = {
     name: product.name,
     slug: product.slug,
+    shortDescription: product.shortDescription,
+    packageSizes: product.packageSizes,
     heroImage: product.heroImage,
     galleryImages: product.galleryImages ?? [],
     buyLink: product.buyLink,

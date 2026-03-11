@@ -14,6 +14,8 @@ type DynamicFieldInput = {
 export type ProductFormInitial = {
   name?: string;
   slug?: string;
+  shortDescription?: string;
+  packageSizes?: string[];
   heroImage?: string;
   galleryImages?: string[];
   buyLink?: string;
@@ -163,6 +165,44 @@ export function ProductForm({ initial }: ProductFormProps) {
       dynamicFields: dynamicPayload,
     };
   }, [name, slug, heroImage, galleryImages, buyLink, isPublished, dynamicFields]);
+
+  const readiness = useMemo(() => {
+    const missing: string[] = [];
+
+    const hasName = Boolean(name && name.trim());
+    const hasSlug = Boolean(slug && slug.trim());
+    const hasShortDescription = Boolean(
+      initial?.shortDescription && initial.shortDescription.trim()
+    );
+    const hasPackageSizes = Boolean(
+      initial?.packageSizes && initial.packageSizes.length > 0
+    );
+    const hasHeroImage = Boolean(heroImage && heroImage.trim());
+    const hasBuyLink = Boolean(buyLink && buyLink.trim());
+
+    if (!hasShortDescription) {
+      missing.push("Kısa açıklama eksik");
+    }
+    if (!hasPackageSizes) {
+      missing.push("Paket boyutu eksik");
+    }
+    if (!hasHeroImage) {
+      missing.push("Hero görsel eksik");
+    }
+    if (!hasBuyLink) {
+      missing.push("Buy link eksik");
+    }
+
+    const isReady =
+      hasName &&
+      hasSlug &&
+      hasShortDescription &&
+      hasPackageSizes &&
+      hasHeroImage &&
+      hasBuyLink;
+
+    return { isReady, missing };
+  }, [name, slug, heroImage, buyLink, initial?.shortDescription, initial?.packageSizes]);
 
   const handleNameChange = (value: string) => {
     setName(value);
@@ -532,6 +572,29 @@ export function ProductForm({ initial }: ProductFormProps) {
 
       {/* Kaydet alanı */}
       <section className="space-y-3 rounded-lg border border-zinc-200 bg-white p-4 sm:p-6">
+        {/* Yayın hazırlığı özeti */}
+        <div className="space-y-1 rounded-md border border-zinc-200 bg-zinc-50 px-3 py-2">
+          <p className="text-xs font-semibold text-zinc-800">
+            Yayın durumu:{" "}
+            <span className="font-normal">
+              {readiness.isReady ? "Yayına hazır" : "Eksikler var"}
+            </span>
+          </p>
+          {!readiness.isReady && (
+            <p className="text-[11px] text-zinc-500">
+              {readiness.missing.length > 0
+                ? readiness.missing.join(" • ")
+                : "Bu ürünün yayına hazır olması için bazı temel alanların doldurulması gerekiyor."}
+            </p>
+          )}
+          {isPublished && !readiness.isReady && (
+            <p className="text-[11px] font-medium text-amber-700">
+              Bu ürün &quot;Yayında&quot; olarak işaretlendi, ancak hâlâ eksik
+              bilgiler içeriyor. Lütfen listeyi gözden geçirin.
+            </p>
+          )}
+        </div>
+
         {errors.length > 0 && (
           <div className="space-y-1 rounded-md border border-red-200 bg-red-50 px-3 py-2">
             <p className="text-xs font-semibold text-red-700">
