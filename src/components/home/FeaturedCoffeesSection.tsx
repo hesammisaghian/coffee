@@ -13,11 +13,11 @@ export function FeaturedCoffeesSection() {
         id="coffee-products-heading"
         className="text-xl font-semibold tracking-tight"
       >
-        Featured coffees
+        Öne çıkan kahveler
       </h2>
+
       <p className="max-w-2xl text-sm text-zinc-600">
-        A first look at a few coffees shaped by the same controlled liquid fermentation
-        approach you read about above.
+        Kontrollü üretim yaklaşımını farklı profillerle gösteren ilk ürün seçkisi.
       </p>
 
       <ul className="grid gap-4 sm:grid-cols-1">
@@ -26,21 +26,33 @@ export function FeaturedCoffeesSection() {
             key={coffee.slug}
             className="rounded-lg border border-zinc-200 bg-white px-4 py-3"
           >
-            <Link href={`/coffees/${coffee.slug}`}>
-              <div className="flex flex-col gap-1">
-                <div className="flex items-baseline justify-between gap-3">
-                  <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
-                    {coffee.name}
-                  </h3>
-                  <p className="text-xs uppercase tracking-wide text-zinc-500">
-                    {coffee.roastLevel} roast
-                  </p>
-                </div>
+            <Link href={`/coffees/${coffee.slug}`} className="block">
+              <div className="flex flex-col gap-2">
+                <h3 className="text-sm font-semibold tracking-tight text-zinc-900">
+                  {coffee.name}
+                </h3>
+
                 <p className="text-xs text-zinc-600">
-                  <span className="font-medium text-zinc-700">Origin:</span>{" "}
-                  {coffee.origin}
+                  {coffee.shortDescription}
                 </p>
-                <p className="text-xs text-zinc-600">{coffee.shortDescription}</p>
+
+                {coffee.flavorNotes.length > 0 && (
+                  <p className="text-xs text-zinc-600">
+                    <span className="font-medium text-zinc-700">
+                      Tat notaları:
+                    </span>{" "}
+                    {coffee.flavorNotes.join(", ")}
+                  </p>
+                )}
+
+                {coffee.packageSizes && coffee.packageSizes.length > 0 && (
+                  <p className="text-xs text-zinc-600">
+                    <span className="font-medium text-zinc-700">
+                      Paket boyutları:
+                    </span>{" "}
+                    {coffee.packageSizes.join(", ")}
+                  </p>
+                )}
               </div>
             </Link>
           </li>
