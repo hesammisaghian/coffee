@@ -37,11 +37,6 @@ export function ProcessDiagramSection() {
 
             <div className="rounded-lg border border-zinc-200 bg-white px-4 py-3">
               <p className="text-sm font-medium text-zinc-800">{label}</p>
-              {index < steps.length - 1 && (
-                <p className="mt-2 text-xs text-zinc-400" aria-hidden>
-                  ↓
-                </p>
-              )}
             </div>
           </li>
         ))}

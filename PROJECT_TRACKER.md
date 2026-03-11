@@ -39,6 +39,9 @@
  - [x] Add homepage Sustainability section (Sürdürülebilir yaklaşım).
  - [x] Add homepage process diagram section (Süreç akışı).
 - [x] Refine the homepage process diagram into a vertical flow aligned with future scroll storytelling.
+- [x] Create ADMIN_SCHEMA_PLAN.md for future lightweight admin with fixed and dynamic product fields.
+- [x] Refine product schema and detail page for future admin: fixed fields + dynamic text-based fields (label, value, visible, order).
+- [x] Align simplified admin-oriented product schema in code (fixed fields + dinamik metin alanları) with ADMIN_SCHEMA_PLAN.md.
 
 ---
 

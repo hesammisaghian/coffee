@@ -142,6 +142,42 @@ export default function CoffeeDetailPage({ params }: CoffeePageProps) {
           )}
         </section>
 
+        {/* Dinamik alanlar (admin tanımlı) */}
+        {coffee.dynamicFields &&
+          coffee.dynamicFields
+            .filter((f) => f.visible)
+            .sort((a, b) => a.order - b.order)
+            .map((field) => (
+              <section
+                key={field.id}
+                aria-labelledby={`dynamic-${field.id}`}
+                className="space-y-3 border-t border-zinc-200 pt-8"
+              >
+                <h2
+                  id={`dynamic-${field.id}`}
+                  className="text-base font-semibold tracking-tight"
+                >
+                  {field.label}
+                </h2>
+                {typeof field.value === "string" ? (
+                  <p className="max-w-2xl text-sm text-zinc-700">
+                    {field.value}
+                  </p>
+                ) : (
+                  <ul className="flex flex-wrap gap-2 text-xs text-zinc-700">
+                    {field.value.map((item) => (
+                      <li
+                        key={item}
+                        className="rounded-full border border-zinc-200 bg-white px-3 py-1"
+                      >
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </section>
+            ))}
+
         <div className="border-t border-zinc-200 pt-6">
           <Link
             href="/coffees"

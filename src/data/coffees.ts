@@ -1,3 +1,12 @@
+/** Dynamic product field for admin-defined attributes (label, value, visible, order). */
+export type ProductField = {
+  id: string;
+  label: string;
+  value: string | string[];
+  visible: boolean;
+  order: number;
+};
+
 export type Coffee = {
   slug: string;
   name: string;
@@ -6,6 +15,13 @@ export type Coffee = {
   origin?: string;
   process?: string;
   packageSizes?: string[];
+  /** Admin-defined text-based fields; rendered on detail page when visible. */
+  dynamicFields?: ProductField[];
+  /** Optional fixed fields for future admin integration. */
+  heroImage?: string;
+  galleryImages?: string[];
+  buyLink?: string;
+  isPublished?: boolean;
 };
 
 export const coffees: Coffee[] = [
@@ -16,6 +32,22 @@ export const coffees: Coffee[] = [
       "Yoğun gövdeli, fındıksı kakao karakterine sahip espresso harmanı.",
     flavorNotes: ["Fındıksı kakao"],
     packageSizes: ["250 gr", "1 kg"],
+    dynamicFields: [
+      {
+        id: "df-1",
+        label: "Demleme Yöntemi",
+        value: ["Örnek: Espresso", "Örnek: Moka"],
+        visible: false,
+        order: 1,
+      },
+      {
+        id: "df-2",
+        label: "Özel Not",
+        value: "Örnek açıklama (sadece test için).",
+        visible: false,
+        order: 2,
+      },
+    ],
   },
   {
     slug: "turk-kahvesi",
@@ -24,6 +56,22 @@ export const coffees: Coffee[] = [
       "Klasik Türk kahvesi formunda, bitter çikolata ve kavrulmuş fındık çağrışımlı bir profil.",
     flavorNotes: ["Bitter çikolata", "kakao", "kavrulmuş fındık"],
     packageSizes: ["250 gr", "1 kg"],
+    dynamicFields: [
+      {
+        id: "df-3",
+        label: "Menşei",
+        value: "Örnek menşei (sadece test için).",
+        visible: false,
+        order: 1,
+      },
+      {
+        id: "df-4",
+        label: "Aroma",
+        value: "Örnek aroma notu (sadece test için).",
+        visible: false,
+        order: 2,
+      },
+    ],
   },
   {
     slug: "rose-fermente-turk-kahvesi",
