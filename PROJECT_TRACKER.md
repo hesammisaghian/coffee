@@ -50,6 +50,7 @@
 - [x] Add otomatik slug üretimi (isimden slug, manuel override destekli) to admin product form.
 - [x] Add yayın hazırlığı ve eksik alan özeti to admin products overview.
 - [x] Show yayın hazırlığı ve eksik bilgi uyarıları doğrudan admin product form içinde.
+- [x] Allow kısa açıklama ve paket boyutları alanlarının doğrudan admin product form üzerinden düzenlenmesi.
 
 ---
 

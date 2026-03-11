@@ -73,6 +73,9 @@ export function ProductForm({ initial }: ProductFormProps) {
   const [slugManuallyEdited, setSlugManuallyEdited] = useState<boolean>(
     Boolean(initial?.slug)
   );
+  const [shortDescription, setShortDescription] = useState(
+    initial?.shortDescription ?? ""
+  );
   const [heroImage, setHeroImage] = useState(initial?.heroImage ?? "");
   const [buyLink, setBuyLink] = useState(initial?.buyLink ?? "");
   const [isPublished, setIsPublished] = useState(initial?.isPublished ?? false);
@@ -80,6 +83,11 @@ export function ProductForm({ initial }: ProductFormProps) {
   const [galleryInput, setGalleryInput] = useState("");
   const [galleryImages, setGalleryImages] = useState<string[]>(
     initial?.galleryImages ?? []
+  );
+
+  const [packageSizeInput, setPackageSizeInput] = useState("");
+  const [packageSizes, setPackageSizes] = useState<string[]>(
+    initial?.packageSizes ?? []
   );
 
   const [dynamicFields, setDynamicFields] = useState<DynamicFieldInput[]>(
@@ -105,6 +113,17 @@ export function ProductForm({ initial }: ProductFormProps) {
 
   const handleRemoveGalleryImage = (index: number) => {
     setGalleryImages((prev) => prev.filter((_, i) => i !== index));
+  };
+
+  const handleAddPackageSize = () => {
+    const trimmed = packageSizeInput.trim();
+    if (!trimmed) return;
+    setPackageSizes((prev) => [...prev, trimmed]);
+    setPackageSizeInput("");
+  };
+
+  const handleRemovePackageSize = (index: number) => {
+    setPackageSizes((prev) => prev.filter((_, i) => i !== index));
   };
 
   const handleAddField = () => {
@@ -158,24 +177,34 @@ export function ProductForm({ initial }: ProductFormProps) {
     return {
       name,
       slug,
+      shortDescription,
       heroImage,
       galleryImages,
+      packageSizes,
       buyLink,
       isPublished,
       dynamicFields: dynamicPayload,
     };
-  }, [name, slug, heroImage, galleryImages, buyLink, isPublished, dynamicFields]);
+  }, [
+    name,
+    slug,
+    shortDescription,
+    heroImage,
+    galleryImages,
+    packageSizes,
+    buyLink,
+    isPublished,
+    dynamicFields,
+  ]);
 
   const readiness = useMemo(() => {
     const missing: string[] = [];
 
     const hasName = Boolean(name && name.trim());
     const hasSlug = Boolean(slug && slug.trim());
-    const hasShortDescription = Boolean(
-      initial?.shortDescription && initial.shortDescription.trim()
-    );
+    const hasShortDescription = Boolean(shortDescription && shortDescription.trim());
     const hasPackageSizes = Boolean(
-      initial?.packageSizes && initial.packageSizes.length > 0
+      packageSizes && packageSizes.filter((p) => p.trim()).length > 0
     );
     const hasHeroImage = Boolean(heroImage && heroImage.trim());
     const hasBuyLink = Boolean(buyLink && buyLink.trim());
@@ -202,7 +231,7 @@ export function ProductForm({ initial }: ProductFormProps) {
       hasBuyLink;
 
     return { isReady, missing };
-  }, [name, slug, heroImage, buyLink, initial?.shortDescription, initial?.packageSizes]);
+  }, [name, slug, shortDescription, packageSizes, heroImage, buyLink]);
 
   const handleNameChange = (value: string) => {
     setName(value);
@@ -222,6 +251,15 @@ export function ProductForm({ initial }: ProductFormProps) {
     }
     if (!slug.trim()) {
       validationErrors.push("Slug boş bırakılamaz.");
+    }
+
+    if (!shortDescription.trim()) {
+      validationErrors.push("Kısa açıklama boş bırakılamaz.");
+    }
+
+    const nonEmptyPackageSizes = packageSizes.filter((p) => p.trim());
+    if (nonEmptyPackageSizes.length === 0) {
+      validationErrors.push("En az bir paket boyutu eklenmelidir.");
     }
 
     dynamicFields.forEach((field, index) => {
@@ -326,6 +364,17 @@ export function ProductForm({ initial }: ProductFormProps) {
               className="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
             />
           </div>
+          <div className="space-y-1 sm:col-span-2">
+            <label className="block text-xs font-medium text-zinc-600">
+              Kısa açıklama
+            </label>
+            <textarea
+              value={shortDescription}
+              onChange={(e) => setShortDescription(e.target.value)}
+              placeholder="Ürünün kupada nasıl hissettirdiğine dair kısa, sade bir açıklama."
+              className="min-h-[80px] w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
+            />
+          </div>
         </div>
         <div className="mt-4 flex items-center gap-2">
           <input
@@ -378,6 +427,50 @@ export function ProductForm({ initial }: ProductFormProps) {
                 <button
                   type="button"
                   onClick={() => handleRemoveGalleryImage(index)}
+                  className="ml-3 text-xs font-medium text-zinc-500 hover:text-zinc-800"
+                >
+                  Kaldır
+                </button>
+              </li>
+            ))}
+          </ul>
+        )}
+      </section>
+
+      {/* Paket boyutları */}
+      <section className="rounded-lg border border-zinc-200 bg-white p-4 sm:p-6">
+        <h2 className="text-sm font-semibold text-zinc-800">Paket boyutları</h2>
+        <p className="mt-1 text-xs text-zinc-500">
+          Örneğin: 200 gr, 250 gr, 1 kg. Bu alan yalnızca metinsel boyut
+          etiketleri tutar.
+        </p>
+        <div className="mt-4 flex flex-col gap-2 sm:flex-row">
+          <input
+            type="text"
+            value={packageSizeInput}
+            onChange={(e) => setPackageSizeInput(e.target.value)}
+            placeholder="Örn: 250 gr"
+            className="w-full rounded-md border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 outline-none focus:border-zinc-400"
+          />
+          <button
+            type="button"
+            onClick={handleAddPackageSize}
+            className="inline-flex items-center justify-center rounded-md border border-zinc-200 bg-zinc-900 px-3 py-2 text-sm font-medium text-white hover:bg-zinc-800"
+          >
+            Paket boyutu ekle
+          </button>
+        </div>
+        {packageSizes.length > 0 && (
+          <ul className="mt-4 space-y-2 text-xs text-zinc-700">
+            {packageSizes.map((size, index) => (
+              <li
+                key={`${size}-${index}`}
+                className="flex items-center justify-between rounded-md border border-zinc-200 bg-zinc-50 px-3 py-2"
+              >
+                <span>{size}</span>
+                <button
+                  type="button"
+                  onClick={() => handleRemovePackageSize(index)}
                   className="ml-3 text-xs font-medium text-zinc-500 hover:text-zinc-800"
                 >
                   Kaldır
