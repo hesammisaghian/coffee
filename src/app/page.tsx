@@ -1,7 +1,7 @@
 import { HeroSection } from "../components/home/HeroSection";
 import { BrandIntroSection } from "../components/home/BrandIntroSection";
-import { ProcessStorySection } from "../components/home/ProcessStorySection";
-import { ProcessDiagramSection } from "../components/home/ProcessDiagramSection";
+import { DifferenceSection } from "../components/home/DifferenceSection";
+import { ProcessStoryStickySection } from "../components/home/ProcessStoryStickySection";
 import { QualitySafetySection } from "../components/home/QualitySafetySection";
 import { SustainabilitySection } from "../components/home/SustainabilitySection";
 import { ContactCtaSection } from "../components/home/ContactCtaSection";
@@ -9,13 +9,22 @@ import { ContactCtaSection } from "../components/home/ContactCtaSection";
 export default function Home() {
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900">
-      <div className="mx-auto flex max-w-4xl flex-col gap-16 px-6 py-16 sm:py-20">
+      {/* Hero: full-bleed (or prepared for full-bleed); not inside content container */}
+      <section aria-label="Hero">
         <HeroSection />
+      </section>
+
+      {/* Constrained content area: all sections below hero */}
+      <div className="mx-auto flex max-w-4xl flex-col gap-16 px-6 py-16 sm:py-20">
         <BrandIntroSection />
-        <ProcessStorySection />
-        <ProcessDiagramSection />
+
+        <DifferenceSection />
+
+        <ProcessStoryStickySection />
+
         <QualitySafetySection />
         <SustainabilitySection />
+
         <ContactCtaSection />
       </div>
     </main>
