@@ -1,6 +1,9 @@
 import { HeroSection } from "../components/home/HeroSection";
 import { BrandIntroSection } from "../components/home/BrandIntroSection";
 import { ProcessStorySection } from "../components/home/ProcessStorySection";
+import { ProcessDiagramSection } from "../components/home/ProcessDiagramSection";
+import { QualitySafetySection } from "../components/home/QualitySafetySection";
+import { SustainabilitySection } from "../components/home/SustainabilitySection";
 import { ContactCtaSection } from "../components/home/ContactCtaSection";
 
 export default function Home() {
@@ -10,6 +13,9 @@ export default function Home() {
         <HeroSection />
         <BrandIntroSection />
         <ProcessStorySection />
+        <ProcessDiagramSection />
+        <QualitySafetySection />
+        <SustainabilitySection />
         <ContactCtaSection />
       </div>
     </main>

@@ -33,6 +33,12 @@
   - [x] Align the coffees data model and coffees pages with real ürün listesi and rewrite them in Turkish.
  - [x] Refine the contact page into a minimal, Türkçe marka iletişim sayfası aligned with the homepage direction.
  - [x] Align the global header navigation labels and marka metni with the Turkish site direction.
+ - [x] Align the global footer metni with the Turkish site direction.
+ - [x] Refine the homepage metni in Turkish using süreç ve kalite odaklı kaynak notlar ile dış yapı ilhamını birleştir.
+ - [x] Add homepage Quality & Safety section (Kalite ve güvenlik).
+ - [x] Add homepage Sustainability section (Sürdürülebilir yaklaşım).
+ - [x] Add homepage process diagram section (Süreç akışı).
+- [x] Refine the homepage process diagram into a vertical flow aligned with future scroll storytelling.
 
 ---
 

@@ -8,13 +8,21 @@ export function BrandIntroSection() {
         id="brand-introduction-heading"
         className="text-xl font-semibold tracking-tight"
       >
-        Marka hakkında
+        Yaklaşımımız
       </h2>
+
       <p className="max-w-2xl text-sm text-zinc-600">
-        Bu proje, sadece yeni bir kahve ürünü değil; yeşil kahve çekirdeğini{" "}
-        kontrollü sıvı fermantasyonla yeniden ele alan, süreç odaklı bir yaklaşım.
-        Amaç, katkısız, tutarlı, daha yumuşak ve daha okunabilir bir fincan profili
-        yaratmak.
+        Bu proje, kahveyi yalnızca kavurma aşamasında değil,
+        yeşil çekirdekten itibaren ele alan bir üretim yaklaşımına dayanır.
+        Kontrollü sıvı fermantasyon, çekirdeğin yapısını koruyarak
+        daha dengeli ve daha yumuşak içimli profiller oluşturmayı hedefler.
+      </p>
+
+      <p className="max-w-2xl text-sm text-zinc-600">
+        Süreçte kimyasal katkı maddesi veya yapay aroma kullanılmaz.
+        Doğal meyve ve bitki kaynaklı bileşenler fermantasyon ortamını
+        destekleyebilir. Amaç, çekirdeğin doğal karakterini koruyarak
+        daha temiz ve tutarlı bir fincan deneyimi elde etmektir.
       </p>
     </section>
   );

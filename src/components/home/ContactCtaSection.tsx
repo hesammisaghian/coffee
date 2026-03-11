@@ -10,13 +10,16 @@ export function ContactCtaSection() {
         id="contact-heading"
         className="text-xl font-semibold tracking-tight"
       >
-        İletişim ve işbirliği
+        İletişim
       </h2>
+
       <p className="max-w-2xl text-sm text-zinc-600">
-        Süreç, ürünler veya potansiyel işbirlikleri hakkında konuşmak isterseniz, bizimle
-        buradan iletişime geçebilirsiniz. Şu an için sipariş ve proje talepleri manuel
-        olarak yönetiliyor.
+        Süreç, ürünler veya olası işbirliği alanları hakkında
+        daha fazla bilgi almak isterseniz bizimle iletişime
+        geçebilirsiniz. Şimdilik sipariş ve proje talepleri
+        sınırlı ölçekte ve manuel olarak değerlendirilmektedir.
       </p>
+
       <div>
         <Link
           href="/contact"
