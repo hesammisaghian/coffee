@@ -1,22 +1,18 @@
-import { notFound } from "next/navigation";
+"use client";
+
+import { notFound, useParams } from "next/navigation";
+import { useRouter } from "next/navigation";
 import { ProductForm, type ProductFormInitial } from "../../../../components/admin/ProductForm";
-import { getCoffeeBySlug, getCoffeeSlugs } from "../../../../data/coffees";
+import { useAdminProducts } from "../../../../components/admin/AdminProductsProvider";
 
-type AdminEditProductPageProps = {
-  params: Promise<{ slug: string }>;
-};
+export default function AdminEditProductPage() {
+  const params = useParams();
+  const router = useRouter();
+  const slug = typeof params.slug === "string" ? params.slug : "";
+  const { getProductBySlug, updateProduct } = useAdminProducts();
+  const product = getProductBySlug(slug);
 
-export function generateStaticParams() {
-  return getCoffeeSlugs().map((slug) => ({ slug }));
-}
-
-export default async function AdminEditProductPage({
-  params,
-}: AdminEditProductPageProps) {
-  const { slug } = await params;
-  const product = getCoffeeBySlug(slug);
-
-  if (!product) {
+  if (!slug || !product) {
     return notFound();
   }
 
@@ -32,6 +28,11 @@ export default async function AdminEditProductPage({
     dynamicFields: product.dynamicFields ?? [],
   };
 
+  const handleSave = (payload: Parameters<typeof updateProduct>[1]) => {
+    updateProduct(slug, payload);
+    router.push("/admin/products");
+  };
+
   return (
     <main className="min-h-screen bg-zinc-50 text-zinc-900">
       <div className="mx-auto flex max-w-5xl flex-col gap-8 px-6 py-10">
@@ -44,14 +45,13 @@ export default async function AdminEditProductPage({
           </h1>
           <p className="max-w-2xl text-sm text-zinc-600">
             Bu sayfa, mevcut bir ürünü yönetim paneli mantığıyla düzenlemek için
-            ilk prototip formudur. Değişiklikler yalnızca yerel state içinde
-            tutulur, henüz kaydedilmez.
+            ilk prototip formudur. Kaydet ile değişiklikler yerel listeye yansır
+            ve ürünler sayfasına yönlendirilirsiniz.
           </p>
         </header>
 
-        <ProductForm initial={initial} />
+        <ProductForm initial={initial} onSave={handleSave} />
       </div>
     </main>
   );
 }
-

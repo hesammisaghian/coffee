@@ -53,6 +53,7 @@
 - [x] Allow kısa açıklama ve paket boyutları alanlarının doğrudan admin product form üzerinden düzenlenmesi.
 - [x] Fix admin edit route (params Promise) so Düzenle opens edit form for every product.
 - [x] Add local-only delete action to admin products list (confirm + remove from session list).
+- [x] Introduce shared local-only admin products state (context) so add / edit / delete reflect across admin pages in the same session.
 
 ---
 

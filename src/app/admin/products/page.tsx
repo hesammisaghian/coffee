@@ -1,16 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
-import { coffees, type Coffee } from "../../../data/coffees";
+import { useAdminProducts } from "../../../components/admin/AdminProductsProvider";
+import type { Coffee } from "../../../data/coffees";
 
 export default function AdminProductsPage() {
-  const [products, setProducts] = useState<Coffee[]>(coffees);
+  const { products, deleteProduct } = useAdminProducts();
 
   const handleDelete = (coffee: Coffee) => {
     const message = `"${coffee.name}" ürününü listeden kaldırmak istediğinize emin misiniz? (Yalnızca bu oturumda kaldırılır; sayfa yenilenince veri geri gelir.)`;
     if (window.confirm(message)) {
-      setProducts((prev) => prev.filter((p) => p.slug !== coffee.slug));
+      deleteProduct(coffee.slug);
     }
   };
 

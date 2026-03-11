@@ -29,8 +29,27 @@ export type ProductFormInitial = {
   }[];
 };
 
+export type ProductFormPayload = {
+  name: string;
+  slug: string;
+  shortDescription: string;
+  heroImage?: string;
+  galleryImages?: string[];
+  packageSizes?: string[];
+  buyLink?: string;
+  isPublished?: boolean;
+  dynamicFields?: {
+    id: string;
+    label: string;
+    value: string | string[];
+    visible: boolean;
+    order: number;
+  }[];
+};
+
 type ProductFormProps = {
   initial?: ProductFormInitial;
+  onSave?: (payload: ProductFormPayload) => void;
 };
 
 function slugify(input: string): string {
@@ -62,7 +81,7 @@ function slugify(input: string): string {
     .replace(/^-+|-+$/g, "");
 }
 
-export function ProductForm({ initial }: ProductFormProps) {
+export function ProductForm({ initial, onSave }: ProductFormProps) {
   const [saveStatus, setSaveStatus] = useState<
     "idle" | "saving" | "success" | "error"
   >("idle");
@@ -303,6 +322,7 @@ export function ProductForm({ initial }: ProductFormProps) {
     console.log("Mock admin product save payload:", previewPayload);
 
     setSaveStatus("success");
+    onSave?.(previewPayload);
   };
 
   return (
