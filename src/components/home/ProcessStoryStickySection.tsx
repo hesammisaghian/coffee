@@ -6,39 +6,27 @@ const STEPS = [
   {
     id: 1,
     title: "Yeşil çekirdek seçimi",
-    body: "Sürece dahil edilen çekirdekler; bölge, depolama koşulları, nem oranı ve olası küf veya aflatoksin riskleri açısından incelenir. Takip edilebilir ve sağlıklı lotlar tercih edilir.",
+    body: "Sürece dahil edilen çekirdekler; bölge, depolama koşulları ve olası riskler açısından incelenir. İzlenebilir ve sağlıklı lotlar tercih edilir.",
   },
   {
     id: 2,
     title: "Kontrollü sıvı fermantasyon",
-    body: "Çekirdekler tanımlı parametrelere sahip bir sıvı ortamda fermantasyona alınır. Doğal meyve ve bitki kaynaklı bileşenler bu süreci destekleyebilir; kimyasal katkı veya yapay aroma kullanılmaz.",
+    body: "Çekirdekler tanımlı parametrelere sahip bir sıvı ortamda fermantasyona alınır. Kimyasal katkı ve yapay aroma kullanılmaz.",
   },
   {
     id: 3,
-    title: "Düşük oksijen / anaerobik faz",
-    body: "Fermantasyon sürecinde oksijen seviyesi sınırlı tutulur. Sıcaklık ve süre kontrolü, istenmeyen keskinliklerin ve kusurların oluşmasını sınırlamayı hedefler.",
+    title: "Kurutma ve stabilizasyon",
+    body: "Fermantasyon sonrası çekirdekler kontrollü koşullarda kurutulur ve nem seviyesi dengelenerek yapısı stabil hale getirilir.",
   },
   {
     id: 4,
-    title: "Kurutma",
-    body: "Fermantasyon sonrası çekirdekler kontrollü koşullarda kurutulur. Nem ve sıcaklık takip edilerek çekirdeğin yapısı korunur.",
-  },
-  {
-    id: 5,
-    title: "Kavurma",
-    body: "Kurutulmuş çekirdekler, hedeflenen fincan profiline göre kavurma sürecinden geçirilir. Her lot tutarlılık için değerlendirilir.",
-  },
-  {
-    id: 6,
-    title: "Fincan profili",
-    body: "Her lot fincan dengesini değerlendirmek için tadım süreçlerinden geçirilir. Amaç, daha dengeli, yumuşak içimli ve tutarlı profiller elde etmektir.",
+    title: "Kavurma ve fincan profili",
+    body: "Stabil çekirdekler hedeflenen fincan profiline göre kavrulur ve tadım süreçleriyle profil doğrulanır.",
   },
 ] as const;
 
 /** Replaceable media: set to a path or URL per step, or use one image for all. When empty, placeholder is shown. */
 const PROCESS_STEP_IMAGES: (string | undefined)[] = [
-  undefined,
-  undefined,
   undefined,
   undefined,
   undefined,
@@ -109,10 +97,10 @@ export function ProcessStoryStickySection() {
               ref={(el) => {
                 stepRefs.current[index] = el;
               }}
-              className="min-h-[45vh] border-b border-zinc-100 py-10 last:border-b-0"
+              className="min-h-[36vh] border-b border-zinc-100 py-8 last:border-b-0"
             >
               <div
-                className={`rounded-lg border px-5 py-4 transition-colors ${
+                className={`rounded-lg border px-5 py-3 transition-colors ${
                   activeStep === index
                     ? "border-zinc-400 bg-zinc-50"
                     : "border-zinc-200 bg-white"
@@ -121,7 +109,7 @@ export function ProcessStoryStickySection() {
                 <p className="text-xs font-semibold uppercase tracking-wider text-zinc-500">
                   Adım {step.id}
                 </p>
-                <h3 className="mt-2 text-lg font-semibold tracking-tight text-zinc-900">
+                <h3 className="mt-2 text-base font-semibold tracking-tight text-zinc-900 sm:text-lg">
                   {step.title}
                 </h3>
                 <p className="mt-2 text-sm leading-relaxed text-zinc-600">
@@ -134,8 +122,8 @@ export function ProcessStoryStickySection() {
 
         {/* Right: sticky media panel */}
         <div className="relative lg:block">
-          <div className="sticky top-8 min-h-[50vh] lg:min-h-[60vh]">
-            <div className="flex h-full min-h-[300px] flex-col justify-center rounded-lg border border-zinc-200 bg-zinc-50/60 p-6 lg:min-h-[50vh]">
+          <div className="sticky top-8 min-h-[40vh] lg:min-h-[48vh]">
+            <div className="flex h-full min-h-[260px] flex-col justify-center rounded-lg border border-zinc-200 bg-zinc-50/60 p-6 lg:min-h-[40vh]">
               {PROCESS_STEP_IMAGES[activeStep] ? (
                 <div className="h-full w-full overflow-hidden rounded-md bg-zinc-200">
                   {/* eslint-disable-next-line @next/next/no-img-element */}

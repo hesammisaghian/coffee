@@ -54,6 +54,7 @@
 - [x] Fix admin edit route (params Promise) so Düzenle opens edit form for every product.
 - [x] Add local-only delete action to admin products list (confirm + remove from session list).
 - [x] Introduce shared local-only admin products state (context) so add / edit / delete reflect across admin pages in the same session.
+ - [x] Simplify the homepage ProcessStoryStickySection from 6 adım to 4 adım, reduce scroll length while preserving sticky panel behavior and align the üretim akışı anlatımı daha net with the overall homepage narrative.
 
 ---
 
